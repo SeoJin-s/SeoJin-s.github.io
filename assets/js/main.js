@@ -4,6 +4,8 @@
 * Updated: Aug 15 2024 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
+* 
+* 수정 버전 - 사용자 HTML 구조에 맞게 조정
 */
 
 (function() {
@@ -15,8 +17,11 @@
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
-    if (!selectHeader.classList.contains('scroll-up-sticky') && !selectHeader.classList.contains('sticky-top') && !selectHeader.classList.contains('fixed-top')) return;
-    window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    if (!selectHeader) return;
+    
+    if (selectHeader.classList.contains('fixed-top')) {
+      window.scrollY > 100 ? selectBody.classList.add('scrolled') : selectBody.classList.remove('scrolled');
+    }
   }
 
   document.addEventListener('scroll', toggleScrolled);
@@ -28,10 +33,17 @@
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToogle() {
-    document.querySelector('body').classList.toggle('mobile-nav-active');
-    mobileNavToggleBtn.classList.toggle('bi-list');
-    mobileNavToggleBtn.classList.toggle('bi-x');
+    const navbar = document.querySelector('#navbar');
+    if (navbar) {
+      document.querySelector('body').classList.toggle('mobile-nav-active');
+      navbar.classList.toggle('navbar-mobile');
+      if (mobileNavToggleBtn) {
+        mobileNavToggleBtn.classList.toggle('bi-list');
+        mobileNavToggleBtn.classList.toggle('bi-x');
+      }
+    }
   }
+  
   if (mobileNavToggleBtn) {
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
   }
@@ -39,24 +51,32 @@
   /**
    * Hide mobile nav on same-page/hash links
    */
-  document.querySelectorAll('#navmenu a').forEach(navmenu => {
-    navmenu.addEventListener('click', () => {
+  document.querySelectorAll('#navbar a').forEach(navlink => {
+    navlink.addEventListener('click', () => {
       if (document.querySelector('.mobile-nav-active')) {
         mobileNavToogle();
       }
     });
-
   });
 
   /**
-   * Toggle mobile nav dropdowns
+   * Smooth scrolling for anchor links
    */
-  document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
-      e.preventDefault();
-      this.parentNode.classList.toggle('active');
-      this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
-      e.stopImmediatePropagation();
+  document.querySelectorAll('a.scrollto').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      if (this.hash !== "") {
+        const target = document.querySelector(this.hash);
+        if (target) {
+          e.preventDefault();
+          const header = document.querySelector('#header');
+          const offset = header ? header.offsetHeight : 80;
+          
+          window.scrollTo({
+            top: target.offsetTop - offset,
+            behavior: 'smooth'
+          });
+        }
+      }
     });
   });
 
@@ -71,22 +91,25 @@
   }
 
   /**
-   * Scroll top button
+   * Back to top button (원래는 scroll-top이지만 HTML에서는 back-to-top 사용)
    */
-  let scrollTop = document.querySelector('.scroll-top');
+  let scrollTop = document.querySelector('.back-to-top');
 
   function toggleScrollTop() {
     if (scrollTop) {
       window.scrollY > 100 ? scrollTop.classList.add('active') : scrollTop.classList.remove('active');
     }
   }
-  scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
+  
+  if (scrollTop) {
+    scrollTop.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
-  });
+  }
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
@@ -95,90 +118,103 @@
    * Animation on scroll function and init
    */
   function aosInit() {
-    AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 600,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+      });
+    }
   }
   window.addEventListener('load', aosInit);
 
   /**
-   * Init swiper sliders
+   * Portfolio filtering (기존 isotope 대신 간단한 필터링)
+   */
+  const portfolioFilters = document.querySelectorAll('#portfolio-flters li');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  if (portfolioFilters.length > 0) {
+    portfolioFilters.forEach(filter => {
+      filter.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Remove active class from all filters
+        portfolioFilters.forEach(f => f.classList.remove('filter-active'));
+        
+        // Add active class to clicked filter
+        this.classList.add('filter-active');
+        
+        const filterValue = this.getAttribute('data-filter');
+        
+        // Filter portfolio items
+        portfolioItems.forEach(item => {
+          if (filterValue === '*') {
+            item.style.display = 'block';
+          } else {
+            if (item.classList.contains(filterValue.substring(1))) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          }
+        });
+        
+        // Reinit AOS after filtering
+        if (typeof AOS !== 'undefined') {
+          AOS.refresh();
+        }
+      });
+    });
+  }
+
+  /**
+   * Initiate glightbox (라이브러리가 있는 경우에만)
+   */
+  if (typeof GLightbox !== 'undefined') {
+    const glightbox = GLightbox({
+      selector: '.glightbox'
+    });
+  }
+
+  /**
+   * Init swiper sliders (라이브러리가 있는 경우에만)
    */
   function initSwiper() {
-    document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
-      let config = JSON.parse(
-        swiperElement.querySelector(".swiper-config").innerHTML.trim()
-      );
-
-      if (swiperElement.classList.contains("swiper-tab")) {
-        initSwiperWithCustomPagination(swiperElement, config);
-      } else {
+    if (typeof Swiper !== 'undefined') {
+      document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+        let config = JSON.parse(
+          swiperElement.querySelector(".swiper-config").innerHTML.trim()
+        );
         new Swiper(swiperElement, config);
-      }
-    });
+      });
+    }
   }
 
   window.addEventListener("load", initSwiper);
 
   /**
-   * Initiate glightbox
+   * Initiate Pure Counter (라이브러리가 있는 경우에만)
    */
-  const glightbox = GLightbox({
-    selector: '.glightbox'
+  window.addEventListener('load', () => {
+    if (typeof PureCounter !== 'undefined') {
+      new PureCounter();
+    }
   });
-
-  /**
-   * Init isotope layout and filters
-   */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
-    let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
-    let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
-    let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
-
-    let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
-      });
-    });
-
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
-        }
-      }, false);
-    });
-
-  });
-
-  /**
-   * Initiate Pure Counter
-   */
-  new PureCounter();
 
   /**
    * Correct scrolling position upon page load for URLs containing hash links.
    */
   window.addEventListener('load', function(e) {
     if (window.location.hash) {
-      if (document.querySelector(window.location.hash)) {
+      const target = document.querySelector(window.location.hash);
+      if (target) {
         setTimeout(() => {
-          let section = document.querySelector(window.location.hash);
-          let scrollMarginTop = getComputedStyle(section).scrollMarginTop;
+          const header = document.querySelector('#header');
+          const offset = header ? header.offsetHeight : 80;
           window.scrollTo({
-            top: section.offsetTop - parseInt(scrollMarginTop),
+            top: target.offsetTop - offset,
             behavior: 'smooth'
           });
         }, 100);
@@ -187,25 +223,26 @@
   });
 
   /**
-   * Navmenu Scrollspy
+   * Navbar Scrollspy (navmenu 대신 navbar 사용)
    */
-  let navmenulinks = document.querySelectorAll('.navmenu a');
+  let navbarlinks = document.querySelectorAll('#navbar a');
 
-  function navmenuScrollspy() {
-    navmenulinks.forEach(navmenulink => {
-      if (!navmenulink.hash) return;
-      let section = document.querySelector(navmenulink.hash);
+  function navbarScrollspy() {
+    navbarlinks.forEach(navlink => {
+      if (!navlink.hash) return;
+      let section = document.querySelector(navlink.hash);
       if (!section) return;
       let position = window.scrollY + 200;
       if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        document.querySelectorAll('.navmenu a.active').forEach(link => link.classList.remove('active'));
-        navmenulink.classList.add('active');
+        document.querySelectorAll('#navbar a.active').forEach(link => link.classList.remove('active'));
+        navlink.classList.add('active');
       } else {
-        navmenulink.classList.remove('active');
+        navlink.classList.remove('active');
       }
-    })
+    });
   }
-  window.addEventListener('load', navmenuScrollspy);
-  document.addEventListener('scroll', navmenuScrollspy);
+  
+  window.addEventListener('load', navbarScrollspy);
+  document.addEventListener('scroll', navbarScrollspy);
 
 })();
