@@ -10,8 +10,8 @@
   <meta content="Portfolio, Developer, Resume, Cho Seo Jin" name="keywords">
   
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/favicon.png" rel="apple-touch-icon">
+  <link href="assets/img/icon.png" rel="icon">
+  <link href="assets/img/icon.png" rel="apple-touch-icon">
   
   <!-- BootStrap Icon-->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -46,21 +46,121 @@
     .yellow {
       color: #f39c12;
     }
-	.portfolio-wrap img {
-	  width: 100%;
-	  height: auto;           /* 고정 높이 제거 */
-	  min-height: 400px;      /* 최소 높이 */
-	  max-height: 600px;      /* 최대 높이 */
-	  object-fit: cover;
-	  border-radius: 4px;
-	}  
-	 .portfolio-item .row {
-  align-items: stretch;    /* 양쪽 컬럼 높이 맞춤 */
+
+    /* 이모지 크기 조정 */
+    .emoji {
+      font-size: 0.8em;
+      vertical-align: middle;
+      display: inline-block;
+      line-height: 1;
+    }
+
+    /* Education 섹션 아이콘 통일 */
+    .features .features-item i {
+      font-size: 48px !important;
+      color: var(--accent-color) !important;
+      margin-right: 20px !important;
+      line-height: 0 !important;
+      display: inline-block;
+      vertical-align: middle;
+      width: 60px;
+      text-align: center;
+    }
+
+    /* 포트폴리오 이미지 크기 조정 */
+    .portfolio-wrap img {
+      width: 100%;
+      height: 350px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .portfolio-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .portfolio-wrap:hover img {
+      transform: scale(1.05);
+    }
+
+    /* 포트폴리오 섹션 전체 조정 */
+    .portfolio-item {
+      margin-bottom: 40px;
+    }
+
+    .portfolio-item .row {
+      align-items: center;
+    }
+
+    /* 포트폴리오 정보 스타일링 */
+    .portfolio-info {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 15px;
+    }
+
+    .portfolio-info h4 {
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+
+    /* 성과 지표 하이라이트 */
+    .achievement {
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      color: white;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-size: 0.9em;
+      font-weight: bold;
+      display: inline-block;
+      margin: 2px;
+    }
+
+    /* 기술 스택 태그 */
+    .tech-tag {
+      background: #3498db;
+      color: white;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 0.8em;
+      margin: 2px;
+      display: inline-block;
+    }
+
+    /* 차별화 포인트 강조 */
+    .highlight-box {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      border-left: 4px solid #f39c12;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+    }
+
+	 /* 초기 헤더 스타일 강제 적용 */
+.header {
+  background: rgba(25, 28, 31, 0.95) !important;
+  backdrop-filter: blur(10px);
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 15px 0;
 }
 
-.portfolio-item .col-lg-6 {
-  display: flex;
-  flex-direction: column;  /* 세로 정렬 */
+.header .logo {
+  color: #fff !important;
+}
+
+.header .navmenu a {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.header .btn-getstarted {
+  background: linear-gradient(135deg, #f39c12, #e67e22) !important;
+  color: white !important;
 } 
 	
   </style>
@@ -74,22 +174,23 @@
       
       <nav id="navbar" class="navmenu order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Portfolio</a></li>
-          <li><a class="nav-link scrollto" href="#services">Skills</a></li>
+          <li><a class="active" href="#hero">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#services">Skills</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav>
-      <a href="#about" class="btn-getstarted scrollto">Get Started</a>
+      <a href="#about" class="btn-getstarted">Get Started</a>
     </div>
   </header><!-- End Header -->
 
   <!-- ======= Hero/Testimonials Section ======= -->
-  <section id="hero" class="testimonials dark-background">
+  <section id="hero" class="testimonials">
     <div class="container">
       <div class="testimonial-item">
+       <!-- <img src="assets/img/photo.JPG" class="testimonial-img" alt=""> -->
         <h1>CHO SEO JIN</h1>
         <h4>낯선 환경도 기회로 바꾸는 적응력과 소통 능력을 갖춘 신입 개발자 <span>조서진</span>입니다.</h4>
         <p>
@@ -107,7 +208,6 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container" data-aos="fade-up">
-
         <div class="section-title">
           <h2>Info</h2>
           <p>PROFILE</p>
@@ -122,6 +222,15 @@
               <li><i class="bi bi-caret-right-fill yellow"></i> <strong>E-mail:</strong> minhyeob05@gmail.com</li>
               <li><i class="bi bi-caret-right-fill yellow"></i> <strong>Github:</strong> <a href="https://github.com/SeoJin-s" target="_blank">https://github.com/SeoJin-s</a></li>
             </ul>
+
+            <!-- 차별화 포인트 강화 -->
+            <div class="highlight-box">
+              <h5><i class="bi bi-lightning-fill" style="color: #f39c12;"></i> 적응력과 소통능력의 실증</h5>
+              <p><strong>🌏 해외 경험:</strong> 다양한 문화권에서의 생활과 업무 경험을 통해 빠른 환경 적응력을 기름</p>
+              <p><strong>🤝 팀워크:</strong> 5명 팀 프로젝트에서 복잡한 캘린더 시스템을 혼자 담당하며 팀원들과의 원활한 소통으로 프로젝트 성공에 기여</p>
+			  <p><strong>🤝 팀워크:</strong> 5명 팀 프로젝트에서 전체적인 디자인과 기획부분을 담당하였고 팀원들과의 협업과 많은 조율을 통해 첫 프로젝트를 성공에 기여 </p>	
+              <p><strong>📈 학습능력:</strong> 6개월 부트캠프에서 웹 개발 전 과정을 습득하고 실제 서비스 배포까지 완성</p>
+            </div>
           </div>
           
           <div class="col-lg-6 order-3 order-lg-4" data-aos="fade-left" data-aos-delay="100">
@@ -135,8 +244,7 @@
     <section id="education" class="features">
       <div class="container" data-aos="fade-up">
         <div class="row">
-          <div class="col-lg-5 features-image" data-aos="fade-right">
-            <img src="assets/img/study.jpeg" alt="" class="img-fluid">
+          <div class="col-lg-5 features-image" style="background-image: url('assets/img/study.jpeg');" data-aos="fade-right">
           </div>
           <div class="col-lg-7" data-aos="fade-left" data-aos-delay="100">
             <div class="features-item" data-aos="zoom-in" data-aos-delay="150">
@@ -156,32 +264,28 @@
             <div class="features-item" data-aos="zoom-in" data-aos-delay="150">
               <i class="bi bi-mortarboard-fill"></i>
               <h4>2024.03.04 ~ 2024.09.12</h4>
-              <p><span class="bold">구디아카데미</span></p>
-              <p><span class="bold">클라우드(AWS)활용 자바/스프링 개발 부트캠프</span></p>
-              <p>2024.03.04 ~ 2024.09.12 (총 130일 / 1040시간)</p>
-              <p><span class="emoji">📒</span> 교육내용</p>
-              <p><span class="bold">1개월차</span></p>
-              <p>- HTML과 Java의 기본 문법을 학습했습니다.</p>
-              <p>- Eclipse IDE와 MariaDB(HeidiSQL)의 사용법을 익혔습니다.</p>
-              <p><span class="bold">2개월차</span></p>
-              <p>- GitHub를 이용한 프로젝트 버전 관리 방법 학습했습니다.</p>
-              <p>- Oracle DB 학습 및 SQL 문법(JOIN, 서브쿼리, 분석함수, 집계함수, 계층쿼리) 습득했습니다.</p>
-              <p>- Model1 구조를 배우고 쇼핑몰 팀 프로젝트를 진행하였습니다.</p>
-              <p><span class="bold">3개월차</span></p>
-              <p>- MVC MODEL 2를 활용한 해시태그 기능의 가계부 프로젝트 구현했습니다.</p>
-              <p>- 세션을 배우고 로그인 기능을 적용해 보았습니다.</p>
-              <p>- 수업 담당 강사님 진행하에 세미 프로젝트(방과후학교)를 진행했습니다.</p>
-              <p>-요구사항 명세서 작성, ERD 설계, 업무 분배, DB 테이블 설계 기획 디자인, 개발까지의 모든 단계를 협력하여 수행했습니다.</p>
-              <p><span class="bold">4개월차</span></p>
-              <p>- Spring Boot Framework 사용법 습득했습니다.</p>
-              <p>- AWS(Amazon Web Server)를 활용한 Ubuntu 서버 세팅 및 프로젝트 배포하였습니다.</p>
-              <p>- 방과후학교 시스템 구축 세미 팀 프로젝트를 마무리 하고 발표를 진행하였습니다.</p>
-              <p><span class="bold">5개월차</span></p>
-              <p>- 기업 담당자의 멘토링 진행하에 파이널 프로젝트(업무지원 그룹웨어)를 진행했습니다.</p>
-              <p>-요구사항 명세서 작성, ERD 설계, 업무 분배, DB 테이블 설계 기획 디자인, 개발까지의 모든 단계를 협력하여 수행했습니다.</p>
-              <p><span class="bold">6개월차</span></p>
-              <p>- 업무지원 시스템 구축 파이널 팀 프로젝트를 마무리 하고 발표를 진행하였습니다.</p>
-              <p>- GitHub.io를 통한 포트폴리오 제작을 진행하였습니다.</p>
+              <p><span class="bold">구디아카데미 부트캠프</span></p>
+              <p><span class="bold">클라우드(AWS)활용 자바/스프링 개발</span></p>
+              <div style="margin: 15px 0;">
+                <span class="achievement">6개월 1040시간 완주</span>
+                <span class="achievement">팀 프로젝트 2회 완성</span>
+                <span class="achievement">AWS 배포 경험</span>
+              </div>
+              
+              <p><span class="emoji">🎯</span> <strong>핵심 성과</strong></p>
+              <div style="margin: 10px 0;">
+                <span class="tech-tag">Java/Spring Boot</span>
+                <span class="tech-tag">JSP/JSTL</span>
+                <span class="tech-tag">MariaDB/Oracle</span>
+                <span class="tech-tag">AWS EC2</span>
+                <span class="tech-tag">Git/GitHub</span>
+              </div>
+              
+              <p><strong>✅ 주요 학습 내용</strong></p>
+              <p>• <strong>웹 개발 풀스택:</strong> 프론트엔드(HTML/CSS/JS)부터 백엔드(Java/Spring), 데이터베이스(SQL) 전 과정</p>
+              <p>• <strong>팀 협업:</strong> Git 협업, 요구사항 분석, ERD 설계, 역할 분담을 통한 실무형 프로젝트</p>
+              <p>• <strong>클라우드 배포:</strong> AWS EC2를 활용한 Ubuntu 서버 환경 구축 및 실서비스 배포</p>
+              <p>• <strong>현업 멘토링:</strong> 기업 개발자와의 멘토링을 통한 실무 경험 습득</p>
             </div>
             <div class="features-item" data-aos="zoom-in" data-aos-delay="150">
               <i class="bi bi-car-front-fill"></i>
@@ -218,7 +322,7 @@
               <div class="row gy-4">
                 <div class="col-lg-6">	
                   <div class="portfolio-wrap">
-                    <img src="assets/img/Untitled-Layer 3.jpg" class="img-fluid" alt="파이널프로젝트">
+                    <img src="assets/img/finalPng.png" class="img-fluid" alt="파이널프로젝트">
                     <div class="portfolio-info">
                       <h4>final-project</h4>
                       <p>Spring</p>
@@ -235,33 +339,46 @@
                     </a>
                   </h4>
                   <div>
-                    <h4>[Team] - Final Project</h4>
+                    <h4>[Team] - 전자결재 그룹웨어 시스템</h4>
+                    
+                    <!-- 성과 지표 강조 -->
+                    <div style="margin: 15px 0;">
+                      <span class="achievement">5주 완성</span>
+                      <span class="achievement">5명 팀 프로젝트</span>
+                      <span class="achievement">캘린더 시스템 100% 담당</span>
+                      <span class="achievement">현업 멘토링</span>
+                    </div>
+                    
                     <hr>
-                    <p>프로젝트 인원 : 5명</p>
-                    <p>프로젝트 주제 : 업무지원 시스템 구축 프로젝트</p>
-                    <p>프로젝트 기간 : 2024.08.04 ~ 2024.09.10 (5주)</p>
-                    <p>프로젝트 설명 : MODEL2(spring) 방식을 이용해 현업 개발자와의 멘토링으로 전자결재 그룹웨어 시스템 구현한 팀 프로젝트</p>
+                    <p><strong>🎯 프로젝트 개요</strong></p>
+                    <p>• <strong>기간:</strong> 2024.08.04 ~ 2024.09.10 (5주)</p>
+                    <p>• <strong>주제:</strong> Spring Boot 기반 전자결재 그룹웨어 시스템</p>
+                    <p>• <strong>특징:</strong> 현업 개발자 멘토링하에 실무형 프로젝트 진행</p>
+                    
+                    <p><strong>🛠 기술 스택</strong></p>
+                    <div style="margin: 10px 0;">
+                      <span class="tech-tag">Spring Boot</span>
+                      <span class="tech-tag">MyBatis</span>
+                      <span class="tech-tag">MariaDB</span>
+                      <span class="tech-tag">JavaScript/Ajax</span>
+                      <span class="tech-tag">FullCalendar API</span>
+                      <span class="tech-tag">AWS EC2</span>
+                    </div>
+                    
                     <hr>
-                    <p>프로젝트 방식 : MODEL 2(spring)</p>
-                    <p>Language : HTML5, CSS3, Java, SQL, JavaScript, Ajax<br>
-                    Framework : SpringBoot<br>
-                    Library : JSTL, JQuery, Lombok, MyBatis, Maven, BootStrap<br>
-                    Database : MariaDB<br>
-                    WAS : Apache Tomcat9<br>
-                    OS : Window10<br>
-                    TOOL : Spring-Tool-Suite4, HeidiSQL, Git</p>
-                    <hr>
-                    <p>[프로젝트 역할]</p>
-                    <p>📅 캘린더 시스템의 모든 일정 관리 기능(개인/회사/부서/프로젝트/휴가)을 담당하였습니다.</p>
-                    <p>[주요 구현 기능]</p>
-                    <p>📅 **오늘의 일정** - 로그인 시 메인 대시보드에서 당일 모든 일정을 <span class="bold">시간순으로 정렬</span>하여 한눈에 확인할 수 있도록 구현하였습니다.</p>
-                    <p>📅 **개인 캘린더** - 개인 메모 및 휴가 일정을 <span class="bold">색상별로 구분</span>하여 표시하고, <span class="bold">Modal</span>과 <span class="bold">Ajax</span>를 활용해 실시간 등록/수정/삭제 기능을 구현하였습니다.</p>
-                    <p>📅 **회사 일정 관리** - 경영지원부장 권한으로 창립기념일, 공휴일 등 전사 공통 일정을 관리할 수 있도록 구현하였습니다.</p>
-                    <p>📅 **부서별 일정 관리** - 부서장 권한으로 부서 회의, 워크숍 등의 일정을 등록하고, <span class="bold">부서별 권한 제어</span>를 통해 소속 부서원만 조회 가능하도록 구현하였습니다.</p>
-                    <p>📅 **프로젝트 일정 관리** - PM 권한으로 프로젝트 마일스톤 및 중요 일정을 관리하고, <span class="bold">참여자별 권한 분기</span>를 구현하였습니다.</p>
-                    <p>📅 **휴가 일정 연동** - 전자결재 시스템과 연동하여 휴가 승인 시 <span class="bold">자동으로 캘린더에 반영</span>되도록 구현하였습니다.</p>
-                    <p>📅 **캘린더 UI/UX** - <span class="bold">FullCalendar API</span>를 활용하여 월/주/일 단위 조회가 가능하고, 일정 종류별로 다른 색상과 아이콘으로 직관적인 구분이 가능하도록 구현하였습니다.</p>
-                    <p>📅 **검색 및 필터링** - 날짜 범위, 키워드, 일정 종류, 부서명 등 <span class="bold">다양한 조건으로 일정 검색</span>이 가능하도록 구현하였습니다.</p>
+                    <p><strong>🚀 주요 담당 기능 & 성과</strong></p>
+                    <p><strong>📅 통합 캘린더 시스템 (100% 개인 담당)</strong></p>
+                    <p>• <strong>5가지 캘린더 통합 관리:</strong> 개인/회사/부서/프로젝트/휴가 일정을 하나의 시스템에서 관리</p>
+                    <p>• <strong>권한별 접근 제어:</strong> 부서장, PM, 경영지원부장 등 역할별 권한 분기 구현</p>
+                    <p>• <strong>실시간 UI/UX:</strong> Modal + Ajax를 활용한 새로고침 없는 CRUD 구현</p>
+                    <p>• <strong>자동 연동 시스템:</strong> 전자결재 휴가 승인 시 캘린더 자동 반영 기능</p>
+                    <p>• <strong>스마트 대시보드:</strong> 로그인 시 당일 모든 일정을 시간순 정렬하여 표시</p>
+                    <p>• <strong>고급 검색:</strong> 날짜 범위, 키워드, 일정 종류별 다중 조건 검색</p>
+                    
+                    <p><strong>💡 기술적 해결 과제</strong></p>
+                    <p>• <strong>복잡한 권한 로직:</strong> 5가지 캘린더 유형별 다른 접근 권한을 Session 기반으로 효율적 구현</p>
+                    <p>• <strong>성능 최적화:</strong> FullCalendar API와 Ajax를 결합하여 대용량 일정 데이터의 빠른 렌더링</p>
+                    <p>• <strong>데이터 무결성:</strong> 휴가 승인-캘린더 연동 시 트랜잭션 처리로 데이터 일관성 보장</p>
                   </div>
                 </div>
               </div>
@@ -291,32 +408,46 @@
                     </a>
                   </h4>
                   <div>
-                    <h4>[Team] - Semi Project</h4>
+                    <h4>[Team] - 방과후학교 LMS 시스템</h4>
+                    
+                    <!-- 성과 지표 강조 -->
+                    <div style="margin: 15px 0;">
+                      <span class="achievement">4주 완성</span>
+                      <span class="achievement">3개 메인페이지 설계</span>
+                      <span class="achievement">자동화 시스템 구현</span>
+                      <span class="achievement">강사 전용 기능 담당</span>
+                    </div>
+                    
                     <hr>
-                    <p>프로젝트 인원 : 5명</p>
-                    <p>프로젝트 주제 : 방과후학교 LMS 시스템</p>
-                    <p>프로젝트 기간 : 2024.05.30 ~ 2024.06.23 (4주)</p>
-                    <p>프로젝트 설명 : MODEL1 방식을 이용해 DB설계부터 구현까지 완성한 방과후학교 학습관리시스템으로 강사, 학생, 관리자별 권한 분리 및 출석관리, 교보재 관리 등의 기능을 구현한 팀 프로젝트</p>
+                    <p><strong>🎯 프로젝트 개요</strong></p>
+                    <p>• <strong>기간:</strong> 2024.05.30 ~ 2024.06.23 (4주)</p>
+                    <p>• <strong>주제:</strong> JSP 기반 방과후학교 학습관리시스템</p>
+                    <p>• <strong>특징:</strong> DB설계부터 배포까지 전 과정 경험</p>
+                    
+                    <p><strong>🛠 기술 스택</strong></p>
+                    <div style="margin: 10px 0;">
+                      <span class="tech-tag">JSP/JSTL</span>
+                      <span class="tech-tag">Java</span>
+                      <span class="tech-tag">MariaDB</span>
+                      <span class="tech-tag">JavaScript/Ajax</span>
+                      <span class="tech-tag">Bootstrap</span>
+                    </div>
+                    
                     <hr>
-                    <p>프로젝트 방식 : MODEL 1</p>
-                    <p>Language : HTML5, CSS3, Java, SQL, JavaScript, Ajax<br>
-                    Library : BootStrap<br>
-                    Database : MariaDB<br>
-                    WAS : Apache Tomcat9<br>
-                    OS : Window10<br>
-                    TOOL : Eclipse, HeidiSQL, Git</p>
-                    <hr>
-                    <p>[프로젝트 역할]</p>
-                    <p>🏫 **방과후학교 LMS 시스템**의 <span class="bold">모든 메인페이지(강사/학생/전체공개)</span> 및 강사 전용 핵심 기능들을 담당하였습니다.</p>
-                    <p>[주요 구현 기능]</p>
-                    <p>🏫 **3개 메인페이지 설계 및 구현** - <span class="bold">전체 공개 메인페이지</span>(비로그인), <span class="bold">학생 전용 메인페이지</span>, <span class="bold">강사 전용 메인페이지</span>를 각각의 사용자 특성에 맞게 설계하고 구현하였습니다.</p>
-                    <p>🏫 **사용자별 대시보드 차별화** - 권한에 따라 <span class="bold">동적으로 다른 UI/UX</span>를 제공하고, 각 사용자 그룹별 필요 정보를 효과적으로 배치하였습니다.</p>
-                    <p>🏫 **강사 수업 관리 시스템** - 담당 수업 조회, 수강 학생 리스트, 학생별 배차 정보를 <span class="bold">통합 관리</span>할 수 있도록 구현하였습니다.</p>
-                    <p>🏫 **자동화된 출석 관리** - <span class="bold">Spring Scheduler</span>를 활용하여 당일 수업 시 학생들을 자동으로 <span class="bold">결석 상태로 INSERT</span>하고, 강사가 실시간으로 출결 상태를 업데이트할 수 있는 시스템을 구현하였습니다.</p>
-                    <p>🏫 **출결 데이터 관리** - 수업 종료 후 미처리 학생 자동 결석 처리, <span class="bold">날짜별 출결 조회</span> 및 과거 출결 내역 검색 기능을 구현하였습니다.</p>
-                    <p>🏫 **교보재 요청 시스템** - 담당 과목별 교보재 조회 및 관리자에게 <span class="bold">교보재 신청</span> 기능을 구현하였습니다.</p>
-                    <p>🏫 **통합 콘텐츠 관리** - 사진첩, 공지사항, 개인정보 수정 등 <span class="bold">권한별 접근 제어</span>를 통한 기능 분기를 구현하였습니다.</p>
-                    <p>🏫 **핵심 기술** - <span class="bold">다중 메인페이지 구조 설계</span>, <span class="bold">권한 기반 라우팅</span>, <span class="bold">스케줄러 자동화</span>, <span class="bold">실시간 데이터 처리</span>를 통해 확장 가능한 LMS 시스템을 구축하였습니다.</p>
+                    <p><strong>🚀 주요 담당 기능 & 성과</strong></p>
+                    <p><strong>🏫 3개 메인페이지 아키텍처 설계</strong></p>
+                    <p>• <strong>사용자별 맞춤 UI:</strong> 전체공개/학생/강사 전용 메인페이지 각각 다른 UX 설계</p>
+                    <p>• <strong>동적 권한 처리:</strong> 로그인 상태에 따른 실시간 페이지 분기 구현</p>
+                    
+                    <p><strong>📊 스마트 출석 관리 시스템</strong></p>
+                    <p>• <strong>자동화 로직:</strong> Spring Scheduler로 당일 수업 시 학생 자동 결석 처리</p>
+                    <p>• <strong>실시간 업데이트:</strong> 강사의 실시간 출결 변경과 자동 저장 기능</p>
+                    <p>• <strong>데이터 관리:</strong> 과거 출결 검색, 통계 조회 기능</p>
+                    
+                    <p><strong>💡 기술적 성과</strong></p>
+                    <p>• <strong>확장성 있는 구조:</strong> 권한별 라우팅 시스템으로 새로운 사용자 그룹 추가 용이</p>
+                    <p>• <strong>자동화 구현:</strong> 수작업 출결 처리를 자동화하여 업무 효율성 대폭 향상</p>
+                    <p>• <strong>안정적인 데이터 처리:</strong> 트랜잭션 기반 출결 데이터 무결성 보장</p>
                   </div>
                 </div>
               </div>
@@ -341,20 +472,54 @@
                     <a class="btn btn-warning" style="font-weight: bold; color:white; margin-right: 10px;" href="http://3.37.223.27/cash/login" target="_blank">
                       바로가기
                     </a>
-                    <a class="btn btn-outline-warning" style="font-weight: bold;" href="https://github.com/SeoJin-s" target="_blank">
+                    <a class="btn btn-outline-warning" style="font-weight: bold;" href="https://github.com/SeoJin-s/cash" target="_blank">
                       Github 링크
                     </a>
                   </h4>
                   <div>
-                    <h4>[개인] Cashbook-Project</h4>
-                    <p>개인 가계부 관리 시스템입니다.</p>
+                    <h4>[개인] Spring Boot 가계부 시스템</h4>
+                    
+                    <!-- 성과 지표 강조 -->
+                    <div style="margin: 15px 0;">
+                      <span class="achievement">개인 프로젝트</span>
+                      <span class="achievement">Spring Boot</span>
+                      <span class="achievement">해시태그 검색</span>
+                      <span class="achievement">데이터 시각화</span>
+                    </div>
+                    
+                    <hr>
+                    <p><strong>🎯 프로젝트 개요</strong></p>
+                    <p>• <strong>주제:</strong> 해시태그 기반 개인 가계부 관리 시스템</p>
+                    <p>• <strong>목표:</strong> Spring Boot와 MVC 패턴 숙련도 향상</p>
+                    
+                    <p><strong>🛠 기술 스택</strong></p>
+                    <div style="margin: 10px 0;">
+                      <span class="tech-tag">Spring Boot</span>
+                      <span class="tech-tag">MyBatis</span>
+                      <span class="tech-tag">MariaDB</span>
+                      <span class="tech-tag">Chart.js</span>
+                      <span class="tech-tag">Bootstrap</span>
+                    </div>
+                    
+                    <hr>
+                    <p><strong>🚀 핵심 구현 기능</strong></p>
+                    <p><strong>💰 스마트 가계부 관리</strong></p>
+                    <p>• <strong>해시태그 시스템:</strong> 수입/지출 항목에 자유로운 태그 등록으로 유연한 분류</p>
+                    <p>• <strong>고급 검색:</strong> 날짜, 금액, 해시태그 조합 검색으로 정확한 내역 조회</p>
+                    <p>• <strong>데이터 시각화:</strong> Chart.js를 활용한 월별/카테고리별 지출 분석 차트</p>
+                    <p>• <strong>통계 대시보드:</strong> 수입/지출 비율, 월별 추이, 카테고리별 통계 제공</p>
+                    
+                    <p><strong>💡 개인 역량 증명</strong></p>
+                    <p>• <strong>설계 능력:</strong> ERD 설계부터 UI/UX까지 전 과정 독립적 수행</p>
+                    <p>• <strong>문제 해결:</strong> 해시태그 검색 로직의 성능 최적화 경험</p>
+                    <p>• <strong>기술 응용:</strong> Spring Boot의 다양한 기능을 실제 서비스에 적용</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
           
-          <!--userboard -->
+          <!-- fileupload -->
           <div class="col-lg-12 portfolio-item filter-model1">
             <div style="border: 1px solid orange; padding: 20px; margin-bottom: 30px;">
               <div class="row gy-4">
@@ -362,7 +527,7 @@
                   <div class="portfolio-wrap">
                     <img src="assets/img/userboard.png" class="img-fluid" alt="">
                     <div class="portfolio-info">
-                      <h4>userboard</h4>
+                      <h4>fileupload</h4>
                       <p>JSP</p>
                     </div>
                   </div>
@@ -372,29 +537,52 @@
                     <a class="btn btn-warning" style="font-weight: bold; color:white; margin-right: 10px;" href="http://3.37.223.27/userboard/home.jsp" target="_blank">
                       바로가기
                     </a>
-                    <a class="btn btn-outline-warning" style="font-weight: bold;" href="https://github.com/SeoJin-s" target="_blank">
+                    <a class="btn btn-outline-warning" style="font-weight: bold;" href="https://github.com/SeoJin-s/fileupload" target="_blank">
                       Github 링크
                     </a>
                   </h4>
                   <div>
-                    <h4>[개인] userboard-Project</h4>
+                    <h4>[개인] 파일업로드 인스타그램 St </h4>
+                    
+                    <!-- 성과 지표 강조 -->
+                    <div style="margin: 15px 0;">
+                          <span class="achievement">개인 프로젝트</span>
+					      <span class="achievement">JSP/Servlet 심화</span>
+					      <span class="achievement">파일 업로드</span>
+					      <span class="achievement">게시판 CRUD</span>
+                    </div>
+                    
                     <hr>
-                    <p>프로젝트 주제 : userboard</p>
-                    <hr>
-                    <p>프로젝트 방식 : MODEL 1</p>
-                    <p>Language : HTML5, CSS3, Java, SQL<br>
-                    Library : BootStrap<br>
-                    Database : MariaDB<br>
-                    WAS : Apache Tomcat9<br>
-                    OS : Window10<br>
-                    TOOL : Eclipse, HeidiSQL</p>
-                    <hr>
-                    <p>[프로젝트 설명]</p>
-                    <p>📒 지역 별 게시판을 구성하였습니다</p>
-                    <p>📒 작성자에게만 수정 삭제가 보이도록 세션분기를 나눠 구현했습니다</p>
-                    <p>📒 제목으로 검색가능하도록 <span class="bold">검색</span>기능을 구현하였습니다</p>
-                    <p>📒 오름차순 내림차순 <span class="bold">정렬</span>기능을 추가하였습니다</p>
-                  </div>
+                    <p><strong>🎯 프로젝트 개요</strong></p>
+				    <p>• <strong>주제:</strong> 파일 업로드 기능이 포함된 JSP 기반 게시판</p>
+				    <p>• <strong>목표:</strong> 실제 서비스 가능한 <strong>첨부파일 게시판</strong> 구현을 통해 JSP/Servlet 심화 학습</p>
+                    
+                     <p><strong>🛠 기술 스택</strong></p>
+					  <div style="margin: 10px 0;">
+					    <span class="tech-tag">JSP/Servlet</span>
+					    <span class="tech-tag">Java</span>
+					    <span class="tech-tag">MariaDB</span>
+					    <span class="tech-tag">JavaScript</span>
+					    <span class="tech-tag">Bootstrap</span>
+					  </div>
+					  
+					  <hr>
+					  <p><strong>🚀 핵심 구현 기능</strong></p>
+					  <p><strong>📂 파일 업로드/다운로드</strong></p>
+					  <p>• <strong>업로드:</strong> 게시글 작성 시 이미지 및 문서 파일 업로드 가능</p>
+					  <p>• <strong>다운로드:</strong> 첨부된 파일을 안전하게 다운로드</p>
+					  <p>• <strong>삭제 처리:</strong> 게시글 삭제 시 첨부파일도 함께 제거</p>
+					  
+					  <p><strong>📝 게시판 CRUD</strong></p>
+					  <p>• 게시글 작성, 조회, 수정, 삭제 기능 완전 구현</p>
+					  <p>• 작성자 권한 기반 수정/삭제 제한</p>
+					  <p>• 페이징 및 검색 기능으로 사용자 편의성 강화</p>
+					  
+					  <p><strong>💡 학습 성과</strong></p>
+					  <p>• <strong>실무 감각:</strong> 파일 업로드/다운로드 로직 직접 구현</p>
+					  <p>• <strong>보안 고려:</strong> 세션과 권한 관리를 적용한 안전한 게시판 설계</p>
+					  <p>• <strong>확장성:</strong> 게시판 구조를 활용해 다른 서비스에도 쉽게 적용 가능</p>
+					</div>
                 </div>
               </div>
             </div>
