@@ -821,34 +821,39 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
-	<!-- 포트폴리오 필터 스크립트 -->
-<script>
-$(document).ready(function() {
-    // isotope 초기화
-    var $portfolioContainer = $('.portfolio-container');
+	<script>
+window.addEventListener('load', function() {
+    // 필터 버튼들 선택
+    const filterButtons = document.querySelectorAll('.portfolio-filters li');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
     
-    $portfolioContainer.isotope({
-        itemSelector: '.portfolio-item',
-        layoutMode: 'fitRows'
-    });
-    
-    // 필터 클릭 이벤트
-    $('.portfolio-filters li').on('click', function() {
-        var filterValue = $(this).attr('data-filter');
-        
-        // 모든 항목 숨기기
-        $('.portfolio-item').hide();
-        
-        // 선택된 항목만 보이기
-        if (filterValue === '*') {
-            $('.portfolio-item').show();
-        } else {
-            $(filterValue).show();
-        }
-        
-        // 활성 상태 변경
-        $('.portfolio-filters li').removeClass('filter-active');
-        $(this).addClass('filter-active');
+    filterButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            const filterValue = this.getAttribute('data-filter');
+            
+            // 모든 항목 숨기기
+            portfolioItems.forEach(function(item) {
+                item.style.display = 'none';
+            });
+            
+            // 선택된 항목만 보이기
+            if (filterValue === '*') {
+                portfolioItems.forEach(function(item) {
+                    item.style.display = 'block';
+                });
+            } else {
+                const targetItems = document.querySelectorAll(filterValue);
+                targetItems.forEach(function(item) {
+                    item.style.display = 'block';
+                });
+            }
+            
+            // 활성 상태 변경
+            filterButtons.forEach(function(btn) {
+                btn.classList.remove('filter-active');
+            });
+            this.classList.add('filter-active');
+        });
     });
 });
 </script>
